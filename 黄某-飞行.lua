@@ -144,7 +144,7 @@ local function createMobileUI()
         ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
     })
     wGradient.Parent = welcomeText
-    local moveTween = TweenService:Create(wGradient, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1), {Offset = Vector2.new(-1, 0)})
+    local moveTween = TweenService:Create(wGradient, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1), {Offset = Vector2.new(-1, 0)})
     moveTween:Play()
     TweenService:Create(wScale, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale = 1}):Play()
     local fadeTween = TweenService:Create(welcomeText, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0})
@@ -159,63 +159,74 @@ local function createMobileUI()
         end)
     end)
     local container = Instance.new("Frame")
-    container.Size = UDim2.new(0, 210, 0, 40)
-    container.Position = UDim2.new(0, 100, 0.5, -20)
+    container.Size = UDim2.new(0, 220, 0, 40)
+    container.Position = UDim2.new(0.5, 0, 0.8, 0)
     container.AnchorPoint = Vector2.new(0.5, 0.5)
-    container.BackgroundTransparency = 1
+    container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     container.Parent = gui
     local uiScale = Instance.new("UIScale")
     uiScale.Scale = 0
     uiScale.Parent = container
+    local containerCorner = Instance.new("UICorner")
+    containerCorner.CornerRadius = UDim.new(1, 0)
+    containerCorner.Parent = container
     local closeBtn = Instance.new("TextButton")
-    closeBtn.Size = UDim2.new(0, 40, 0, 40)
+    closeBtn.Size = UDim2.new(0, 50, 0, 40)
     closeBtn.Position = UDim2.new(0, 0, 0, 0)
     closeBtn.Text = "X"
     closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
     closeBtn.Font = Enum.Font.GothamBold
     closeBtn.TextSize = 18
-    closeBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-    closeBtn.AutoButtonColor = false
+    closeBtn.BackgroundTransparency = 1
     closeBtn.Parent = container
-    local cCorner = Instance.new("UICorner")
-    cCorner.CornerRadius = UDim.new(1, 0)
-    cCorner.Parent = closeBtn
+    local div1 = Instance.new("Frame")
+    div1.Size = UDim2.new(0, 1, 0, 24)
+    div1.Position = UDim2.new(0, 50, 0.5, -12)
+    div1.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    div1.BorderSizePixel = 0
+    div1.Parent = container
+    local flyHighlight = Instance.new("Frame")
+    flyHighlight.Size = UDim2.new(0, 120, 0, 30)
+    flyHighlight.Position = UDim2.new(0, 51, 0, 5)
+    flyHighlight.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+    flyHighlight.BackgroundTransparency = 1
+    flyHighlight.Parent = container
+    local fhCorner = Instance.new("UICorner")
+    fhCorner.CornerRadius = UDim.new(1, 0)
+    fhCorner.Parent = flyHighlight
     local capsuleBtn = Instance.new("TextButton")
     capsuleBtn.Size = UDim2.new(0, 120, 0, 40)
-    capsuleBtn.Position = UDim2.new(0, 45, 0, 0)
+    capsuleBtn.Position = UDim2.new(0, 51, 0, 0)
     capsuleBtn.Text = "飞行"
     capsuleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    capsuleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    capsuleBtn.BackgroundTransparency = 1
     capsuleBtn.AutoButtonColor = false
     capsuleBtn.Parent = container
-    local corner1 = Instance.new("UICorner")
-    corner1.CornerRadius = UDim.new(1, 0)
-    corner1.Parent = capsuleBtn
     local expandBtn = Instance.new("TextButton")
     expandBtn.Size = UDim2.new(0.33, 0, 1, 0)
     expandBtn.Position = UDim2.new(0.66, 0, 0, 0)
     expandBtn.Text = ""
-    expandBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    expandBtn.BackgroundTransparency = 1
     expandBtn.Parent = capsuleBtn
-    local corner2 = Instance.new("UICorner")
-    corner2.CornerRadius = UDim.new(1, 0)
-    corner2.Parent = expandBtn
     local arrowIcon = Instance.new("ImageLabel")
     arrowIcon.Size = UDim2.new(0, 20, 0, 20)
     arrowIcon.Position = UDim2.new(0.5, -10, 0.5, -10)
     arrowIcon.BackgroundTransparency = 1
     arrowIcon.Image = "rbxassetid://6035047377"
     arrowIcon.Parent = expandBtn
+    local div2 = Instance.new("Frame")
+    div2.Size = UDim2.new(0, 1, 0, 24)
+    div2.Position = UDim2.new(0, 171, 0.5, -12)
+    div2.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    div2.BorderSizePixel = 0
+    div2.Parent = container
     local dragBtn = Instance.new("TextButton")
-    dragBtn.Size = UDim2.new(0, 40, 0, 40)
-    dragBtn.Position = UDim2.new(0, 170, 0, 0)
+    dragBtn.Size = UDim2.new(0, 48, 0, 40)
+    dragBtn.Position = UDim2.new(0, 172, 0, 0)
     dragBtn.Text = ""
-    dragBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    dragBtn.BackgroundTransparency = 1
     dragBtn.AutoButtonColor = false
     dragBtn.Parent = container
-    local corner3 = Instance.new("UICorner")
-    corner3.CornerRadius = UDim.new(1, 0)
-    corner3.Parent = dragBtn
     local dragIcon = Instance.new("ImageLabel")
     dragIcon.Size = UDim2.new(0, 20, 0, 20)
     dragIcon.Position = UDim2.new(0.5, -10, 0.5, -10)
@@ -224,7 +235,7 @@ local function createMobileUI()
     dragIcon.Parent = dragBtn
     local panel = Instance.new("Frame")
     panel.Size = UDim2.new(0, 120, 0, 0)
-    panel.Position = UDim2.new(0, 45, 0, 45)
+    panel.Position = UDim2.new(0, 51, 0, 45)
     panel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     panel.Visible = false
     panel.Parent = container
@@ -290,7 +301,7 @@ local function createMobileUI()
         isExpanded = state
         if state then
             panel.Visible = true
-            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0, 120, 0, 115), Position = UDim2.new(0, 45, 0, 45)})
+            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0, 120, 0, 115), Position = UDim2.new(0, 51, 0, 45)})
             tw:Play()
             tw.Completed:Connect(function()
                 if isExpanded then
@@ -305,7 +316,7 @@ local function createMobileUI()
                 TweenService:Create(el, TweenInfo.new(0.2), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
             end
             task.wait(0.2)
-            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Size = UDim2.new(0, 120, 0, 0), Position = UDim2.new(0, 45, 0, 45)})
+            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Size = UDim2.new(0, 120, 0, 0), Position = UDim2.new(0, 51, 0, 45)})
             tw:Play()
             tw.Completed:Connect(function() if not isExpanded then panel.Visible = false end end)
             TweenService:Create(arrowIcon, TweenInfo.new(0.3), {Rotation = 0}):Play()
@@ -392,12 +403,10 @@ local function createMobileUI()
         FlyEnabled = not FlyEnabled
         if FlyEnabled then
             capsuleBtn.Text = "飞行中"
-            capsuleBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
-            expandBtn.BackgroundColor3 = Color3.fromRGB(0, 120, 180)
+            TweenService:Create(flyHighlight, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
         else
             capsuleBtn.Text = "飞行"
-            capsuleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-            expandBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+            TweenService:Create(flyHighlight, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
         end
         toggleFly()
     end)
