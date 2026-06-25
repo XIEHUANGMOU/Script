@@ -108,6 +108,55 @@ function toggleNoClip(state)
         end
     end
 end
+local function applyiOSGlassEffect(gui, cornerVal, baseZIndex)
+    baseZIndex = baseZIndex or 1
+    gui.ZIndex = baseZIndex
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = cornerVal or UDim.new(1, 0)
+    corner.Parent = gui
+    local glassShine = Instance.new("Frame")
+    glassShine.Name = "GlassShine"
+    glassShine.Size = UDim2.new(1, -4, 0.5, -2)
+    glassShine.Position = UDim2.new(0, 2, 0, 2)
+    glassShine.BackgroundTransparency = 1
+    glassShine.ZIndex = baseZIndex + 1
+    glassShine.Parent = gui
+    local shineCorner = Instance.new("UICorner")
+    shineCorner.CornerRadius = cornerVal or UDim.new(1, 0)
+    shineCorner.Parent = glassShine
+    local shineGrad = Instance.new("UIGradient")
+    shineGrad.Rotation = 90
+    shineGrad.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 0.2),
+        NumberSequenceKeypoint.new(1, 1)
+    })
+    shineGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+    shineGrad.Parent = glassShine
+    local glassEdge = Instance.new("Frame")
+    glassEdge.Name = "GlassEdge"
+    glassEdge.Size = UDim2.new(1, -2, 1, -2)
+    glassEdge.Position = UDim2.new(0, 1, 0, 1)
+    glassEdge.BackgroundTransparency = 1
+    glassEdge.ZIndex = baseZIndex + 1
+    glassEdge.Parent = gui
+    local edgeCorner = Instance.new("UICorner")
+    edgeCorner.CornerRadius = cornerVal or UDim.new(1, 0)
+    edgeCorner.Parent = glassEdge
+    local edgeStroke = Instance.new("UIStroke")
+    edgeStroke.Thickness = 1.5
+    edgeStroke.Color = Color3.fromRGB(255, 255, 255)
+    edgeStroke.Transparency = 0.5
+    edgeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    edgeStroke.Parent = glassEdge
+    local edgeGrad = Instance.new("UIGradient")
+    edgeGrad.Rotation = 90
+    edgeGrad.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 0.1),
+        NumberSequenceKeypoint.new(0.5, 0.5),
+        NumberSequenceKeypoint.new(1, 0.9)
+    })
+    edgeGrad.Parent = edgeStroke
+end
 local function createMobileUI()
     local gui = Instance.new("ScreenGui")
     gui.Name = "FlySystemUI"
@@ -163,13 +212,12 @@ local function createMobileUI()
     container.Position = UDim2.new(0.5, 0, 0.8, 0)
     container.AnchorPoint = Vector2.new(0.5, 0.5)
     container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    container.BackgroundTransparency = 0.15
     container.Parent = gui
+    applyiOSGlassEffect(container, UDim.new(1, 0), 1)
     local uiScale = Instance.new("UIScale")
     uiScale.Scale = 0
     uiScale.Parent = container
-    local containerCorner = Instance.new("UICorner")
-    containerCorner.CornerRadius = UDim.new(1, 0)
-    containerCorner.Parent = container
     local closeBtn = Instance.new("TextButton")
     closeBtn.Size = UDim2.new(0, 50, 0, 40)
     closeBtn.Position = UDim2.new(0, 0, 0, 0)
@@ -178,12 +226,15 @@ local function createMobileUI()
     closeBtn.Font = Enum.Font.GothamBold
     closeBtn.TextSize = 18
     closeBtn.BackgroundTransparency = 1
+    closeBtn.ZIndex = 3
     closeBtn.Parent = container
     local div1 = Instance.new("Frame")
     div1.Size = UDim2.new(0, 1, 0, 24)
     div1.Position = UDim2.new(0, 50, 0.5, -12)
-    div1.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    div1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    div1.BackgroundTransparency = 0.7
     div1.BorderSizePixel = 0
+    div1.ZIndex = 3
     div1.Parent = container
     local flyHighlight = Instance.new("Frame")
     flyHighlight.Size = UDim2.new(0, 120, 0, 30)
@@ -191,9 +242,7 @@ local function createMobileUI()
     flyHighlight.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
     flyHighlight.BackgroundTransparency = 1
     flyHighlight.Parent = container
-    local fhCorner = Instance.new("UICorner")
-    fhCorner.CornerRadius = UDim.new(1, 0)
-    fhCorner.Parent = flyHighlight
+    applyiOSGlassEffect(flyHighlight, UDim.new(1, 0), 2)
     local capsuleBtn = Instance.new("TextButton")
     capsuleBtn.Size = UDim2.new(0, 120, 0, 40)
     capsuleBtn.Position = UDim2.new(0, 51, 0, 0)
@@ -201,24 +250,29 @@ local function createMobileUI()
     capsuleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
     capsuleBtn.BackgroundTransparency = 1
     capsuleBtn.AutoButtonColor = false
+    capsuleBtn.ZIndex = 5
     capsuleBtn.Parent = container
     local expandBtn = Instance.new("TextButton")
     expandBtn.Size = UDim2.new(0.33, 0, 1, 0)
     expandBtn.Position = UDim2.new(0.66, 0, 0, 0)
     expandBtn.Text = ""
     expandBtn.BackgroundTransparency = 1
+    expandBtn.ZIndex = 5
     expandBtn.Parent = capsuleBtn
     local arrowIcon = Instance.new("ImageLabel")
     arrowIcon.Size = UDim2.new(0, 20, 0, 20)
     arrowIcon.Position = UDim2.new(0.5, -10, 0.5, -10)
     arrowIcon.BackgroundTransparency = 1
     arrowIcon.Image = "rbxassetid://6035047377"
+    arrowIcon.ZIndex = 5
     arrowIcon.Parent = expandBtn
     local div2 = Instance.new("Frame")
     div2.Size = UDim2.new(0, 1, 0, 24)
     div2.Position = UDim2.new(0, 171, 0.5, -12)
-    div2.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    div2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    div2.BackgroundTransparency = 0.7
     div2.BorderSizePixel = 0
+    div2.ZIndex = 3
     div2.Parent = container
     local dragBtn = Instance.new("TextButton")
     dragBtn.Size = UDim2.new(0, 48, 0, 40)
@@ -226,22 +280,23 @@ local function createMobileUI()
     dragBtn.Text = ""
     dragBtn.BackgroundTransparency = 1
     dragBtn.AutoButtonColor = false
+    dragBtn.ZIndex = 3
     dragBtn.Parent = container
     local dragIcon = Instance.new("ImageLabel")
     dragIcon.Size = UDim2.new(0, 20, 0, 20)
     dragIcon.Position = UDim2.new(0.5, -10, 0.5, -10)
     dragIcon.BackgroundTransparency = 1
     dragIcon.Image = "rbxassetid://6034768640"
+    dragIcon.ZIndex = 3
     dragIcon.Parent = dragBtn
     local panel = Instance.new("Frame")
     panel.Size = UDim2.new(0, 120, 0, 0)
     panel.Position = UDim2.new(0, 51, 0, 45)
     panel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    panel.BackgroundTransparency = 0.15
     panel.Visible = false
     panel.Parent = container
-    local panelCorner = Instance.new("UICorner")
-    panelCorner.CornerRadius = UDim.new(0, 12)
-    panelCorner.Parent = panel
+    applyiOSGlassEffect(panel, UDim.new(0, 12), 1)
     local speedLabel = Instance.new("TextLabel")
     speedLabel.Size = UDim2.new(0.3, 0, 0, 25)
     speedLabel.Position = UDim2.new(0.05, 0, 0, 10)
@@ -250,6 +305,7 @@ local function createMobileUI()
     speedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     speedLabel.TextTransparency = 1
     speedLabel.TextXAlignment = Enum.TextXAlignment.Left
+    speedLabel.ZIndex = 3
     speedLabel.Parent = panel
     local speedBox = Instance.new("TextBox")
     speedBox.Size = UDim2.new(0.55, 0, 0, 25)
@@ -257,12 +313,11 @@ local function createMobileUI()
     speedBox.Text = tostring(FlySpeed)
     speedBox.TextColor3 = Color3.fromRGB(255, 255, 255)
     speedBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    speedBox.BackgroundTransparency = 0.15
     speedBox.TextTransparency = 1
-    speedBox.BackgroundTransparency = 1
+    speedBox.ZIndex = 3
     speedBox.Parent = panel
-    local sbCorner = Instance.new("UICorner")
-    sbCorner.CornerRadius = UDim.new(1, 0)
-    sbCorner.Parent = speedBox
+    applyiOSGlassEffect(speedBox, UDim.new(1, 0), 3)
     speedBox.FocusLost:Connect(function()
         local num = tonumber(speedBox.Text)
         if num then
@@ -276,24 +331,22 @@ local function createMobileUI()
     antiFlingBtn.Text = "反甩飞: 关"
     antiFlingBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
     antiFlingBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-    antiFlingBtn.BackgroundTransparency = 1
+    antiFlingBtn.BackgroundTransparency = 0.15
     antiFlingBtn.TextTransparency = 1
+    antiFlingBtn.ZIndex = 3
     antiFlingBtn.Parent = panel
-    local afCorner = Instance.new("UICorner")
-    afCorner.CornerRadius = UDim.new(1, 0)
-    afCorner.Parent = antiFlingBtn
+    applyiOSGlassEffect(antiFlingBtn, UDim.new(1, 0), 3)
     local noclipBtn = Instance.new("TextButton")
     noclipBtn.Size = UDim2.new(0.9, 0, 0, 25)
     noclipBtn.Position = UDim2.new(0.05, 0, 0, 80)
     noclipBtn.Text = "穿墙: 关"
     noclipBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
     noclipBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-    noclipBtn.BackgroundTransparency = 1
+    noclipBtn.BackgroundTransparency = 0.15
     noclipBtn.TextTransparency = 1
+    noclipBtn.ZIndex = 3
     noclipBtn.Parent = panel
-    local ncCorner = Instance.new("UICorner")
-    ncCorner.CornerRadius = UDim.new(1, 0)
-    ncCorner.Parent = noclipBtn
+    applyiOSGlassEffect(noclipBtn, UDim.new(1, 0), 3)
     local uiElements = {speedLabel, speedBox, antiFlingBtn, noclipBtn}
     local isExpanded = false
     local function toggleExpand(state)
@@ -306,7 +359,7 @@ local function createMobileUI()
             tw.Completed:Connect(function()
                 if isExpanded then
                     for _, el in ipairs(uiElements) do
-                        TweenService:Create(el, TweenInfo.new(0.2), {BackgroundTransparency = 0, TextTransparency = 0}):Play()
+                        TweenService:Create(el, TweenInfo.new(0.2), {BackgroundTransparency = 0.15, TextTransparency = 0}):Play()
                     end
                 end
             end)
@@ -403,7 +456,7 @@ local function createMobileUI()
         FlyEnabled = not FlyEnabled
         if FlyEnabled then
             capsuleBtn.Text = "飞行中"
-            TweenService:Create(flyHighlight, TweenInfo.new(0.3), {BackgroundTransparency = 0}):Play()
+            TweenService:Create(flyHighlight, TweenInfo.new(0.3), {BackgroundTransparency = 0.15}):Play()
         else
             capsuleBtn.Text = "飞行"
             TweenService:Create(flyHighlight, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
