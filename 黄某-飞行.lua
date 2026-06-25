@@ -111,6 +111,7 @@ end
 local function applyiOSGlassEffect(gui, cornerVal, baseZIndex)
     baseZIndex = baseZIndex or 1
     gui.ZIndex = baseZIndex
+    gui.BorderSizePixel = 0
     local corner = Instance.new("UICorner")
     corner.CornerRadius = cornerVal or UDim.new(1, 0)
     corner.Parent = gui
@@ -118,7 +119,9 @@ local function applyiOSGlassEffect(gui, cornerVal, baseZIndex)
     glassShine.Name = "GlassShine"
     glassShine.Size = UDim2.new(1, 0, 1, 0)
     glassShine.Position = UDim2.new(0, 0, 0, 0)
-    glassShine.BackgroundTransparency = 1
+    glassShine.BackgroundTransparency = 0
+    glassShine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    glassShine.BorderSizePixel = 0
     glassShine.ZIndex = baseZIndex + 1
     glassShine.Parent = gui
     local shineCorner = Instance.new("UICorner")
@@ -127,25 +130,25 @@ local function applyiOSGlassEffect(gui, cornerVal, baseZIndex)
     local shineGrad = Instance.new("UIGradient")
     shineGrad.Rotation = 45
     shineGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0.4),
+        NumberSequenceKeypoint.new(0, 0),
         NumberSequenceKeypoint.new(0.5, 1),
-        NumberSequenceKeypoint.new(1, 0.4)
+        NumberSequenceKeypoint.new(1, 0)
     })
     shineGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
     shineGrad.Parent = glassShine
     local edgeStroke = Instance.new("UIStroke")
     edgeStroke.Name = "GlassEdge"
-    edgeStroke.Thickness = 1.2
+    edgeStroke.Thickness = 1.5
     edgeStroke.Color = Color3.fromRGB(255, 255, 255)
-    edgeStroke.Transparency = 0.8
+    edgeStroke.Transparency = 0
     edgeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     edgeStroke.Parent = gui
     local edgeGrad = Instance.new("UIGradient")
     edgeGrad.Rotation = 45
     edgeGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0.1),
-        NumberSequenceKeypoint.new(0.5, 0.9),
-        NumberSequenceKeypoint.new(1, 0.1)
+        NumberSequenceKeypoint.new(0, 0),
+        NumberSequenceKeypoint.new(0.5, 1),
+        NumberSequenceKeypoint.new(1, 0)
     })
     edgeGrad.Parent = edgeStroke
 end
@@ -308,6 +311,7 @@ local function createMobileUI()
     speedBox.BackgroundTransparency = 1
     speedBox.TextTransparency = 1
     speedBox.ZIndex = 3
+    speedBox.ClearTextOnFocus = false
     speedBox.Parent = panel
     applyiOSGlassEffect(speedBox, UDim.new(1, 0), 3)
     speedBox.FocusLost:Connect(function()
