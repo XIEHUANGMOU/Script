@@ -114,46 +114,55 @@ local function applyiOSGlassEffect(gui, cornerVal, baseZIndex)
     local corner = Instance.new("UICorner")
     corner.CornerRadius = cornerVal or UDim.new(1, 0)
     corner.Parent = gui
-    local glassShine = Instance.new("Frame")
-    glassShine.Name = "GlassShine"
-    glassShine.Size = UDim2.new(1, -4, 0.5, -2)
-    glassShine.Position = UDim2.new(0, 2, 0, 2)
-    glassShine.BackgroundTransparency = 1
-    glassShine.ZIndex = baseZIndex + 1
-    glassShine.Parent = gui
-    local shineCorner = Instance.new("UICorner")
-    shineCorner.CornerRadius = cornerVal or UDim.new(1, 0)
-    shineCorner.Parent = glassShine
-    local shineGrad = Instance.new("UIGradient")
-    shineGrad.Rotation = 90
-    shineGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0.2),
+    local topShine = Instance.new("Frame")
+    topShine.Name = "TopShine"
+    topShine.Size = UDim2.new(1, 0, 0.5, 0)
+    topShine.Position = UDim2.new(0, 0, 0, 0)
+    topShine.BackgroundTransparency = 1
+    topShine.ZIndex = baseZIndex + 1
+    topShine.Parent = gui
+    local tCorner = Instance.new("UICorner")
+    tCorner.CornerRadius = cornerVal or UDim.new(1, 0)
+    tCorner.Parent = topShine
+    local tGrad = Instance.new("UIGradient")
+    tGrad.Rotation = 90
+    tGrad.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 0.3),
         NumberSequenceKeypoint.new(1, 1)
     })
-    shineGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
-    shineGrad.Parent = glassShine
-    local glassEdge = Instance.new("Frame")
-    glassEdge.Name = "GlassEdge"
-    glassEdge.Size = UDim2.new(1, -2, 1, -2)
-    glassEdge.Position = UDim2.new(0, 1, 0, 1)
-    glassEdge.BackgroundTransparency = 1
-    glassEdge.ZIndex = baseZIndex + 1
-    glassEdge.Parent = gui
-    local edgeCorner = Instance.new("UICorner")
-    edgeCorner.CornerRadius = cornerVal or UDim.new(1, 0)
-    edgeCorner.Parent = glassEdge
+    tGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+    tGrad.Parent = topShine
+    local bottomShine = Instance.new("Frame")
+    bottomShine.Name = "BottomShine"
+    bottomShine.Size = UDim2.new(1, 0, 0.5, 0)
+    bottomShine.Position = UDim2.new(0, 0, 0.5, 0)
+    bottomShine.BackgroundTransparency = 1
+    bottomShine.ZIndex = baseZIndex + 1
+    bottomShine.Parent = gui
+    local bCorner = Instance.new("UICorner")
+    bCorner.CornerRadius = cornerVal or UDim.new(1, 0)
+    bCorner.Parent = bottomShine
+    local bGrad = Instance.new("UIGradient")
+    bGrad.Rotation = 90
+    bGrad.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 1),
+        NumberSequenceKeypoint.new(1, 0.3)
+    })
+    bGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+    bGrad.Parent = bottomShine
     local edgeStroke = Instance.new("UIStroke")
-    edgeStroke.Thickness = 1.5
+    edgeStroke.Name = "GlassEdge"
+    edgeStroke.Thickness = 1
     edgeStroke.Color = Color3.fromRGB(255, 255, 255)
-    edgeStroke.Transparency = 0.5
+    edgeStroke.Transparency = 0.8
     edgeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    edgeStroke.Parent = glassEdge
+    edgeStroke.Parent = gui
     local edgeGrad = Instance.new("UIGradient")
     edgeGrad.Rotation = 90
     edgeGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0.1),
-        NumberSequenceKeypoint.new(0.5, 0.5),
-        NumberSequenceKeypoint.new(1, 0.9)
+        NumberSequenceKeypoint.new(0, 0.4),
+        NumberSequenceKeypoint.new(0.5, 0.9),
+        NumberSequenceKeypoint.new(1, 0.4)
     })
     edgeGrad.Parent = edgeStroke
 end
