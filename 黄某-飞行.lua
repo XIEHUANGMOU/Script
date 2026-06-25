@@ -108,63 +108,36 @@ function toggleNoClip(state)
         end
     end
 end
-local function applyiOSGlassEffect(gui, cornerVal, baseZIndex)
+local function applyModern2026Effect(gui, cornerVal, baseZIndex)
     baseZIndex = baseZIndex or 1
     gui.ZIndex = baseZIndex
     local corner = Instance.new("UICorner")
-    corner.CornerRadius = cornerVal or UDim.new(1, 0)
+    corner.CornerRadius = cornerVal or UDim.new(0, 14)
     corner.Parent = gui
-    local topShine = Instance.new("Frame")
-    topShine.Name = "TopShine"
-    topShine.Size = UDim2.new(1, 0, 0.5, 0)
-    topShine.Position = UDim2.new(0, 0, 0, 0)
-    topShine.BackgroundTransparency = 1
-    topShine.ZIndex = baseZIndex + 1
-    topShine.Parent = gui
-    local tCorner = Instance.new("UICorner")
-    tCorner.CornerRadius = cornerVal or UDim.new(1, 0)
-    tCorner.Parent = topShine
-    local tGrad = Instance.new("UIGradient")
-    tGrad.Rotation = 90
-    tGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0.3),
-        NumberSequenceKeypoint.new(1, 1)
-    })
-    tGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
-    tGrad.Parent = topShine
-    local bottomShine = Instance.new("Frame")
-    bottomShine.Name = "BottomShine"
-    bottomShine.Size = UDim2.new(1, 0, 0.5, 0)
-    bottomShine.Position = UDim2.new(0, 0, 0.5, 0)
-    bottomShine.BackgroundTransparency = 1
-    bottomShine.ZIndex = baseZIndex + 1
-    bottomShine.Parent = gui
-    local bCorner = Instance.new("UICorner")
-    bCorner.CornerRadius = cornerVal or UDim.new(1, 0)
-    bCorner.Parent = bottomShine
-    local bGrad = Instance.new("UIGradient")
-    bGrad.Rotation = 90
-    bGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 1),
-        NumberSequenceKeypoint.new(1, 0.3)
-    })
-    bGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
-    bGrad.Parent = bottomShine
-    local edgeStroke = Instance.new("UIStroke")
-    edgeStroke.Name = "GlassEdge"
-    edgeStroke.Thickness = 1
-    edgeStroke.Color = Color3.fromRGB(255, 255, 255)
-    edgeStroke.Transparency = 0.8
-    edgeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    edgeStroke.Parent = gui
+    local stroke = Instance.new("UIStroke")
+    stroke.Name = "ModernEdge"
+    stroke.Thickness = 1.2
+    stroke.Color = Color3.fromRGB(255, 255, 255)
+    stroke.Transparency = 0.85
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    stroke.Parent = gui
     local edgeGrad = Instance.new("UIGradient")
-    edgeGrad.Rotation = 90
-    edgeGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0.4),
-        NumberSequenceKeypoint.new(0.5, 0.9),
-        NumberSequenceKeypoint.new(1, 0.4)
-    })
-    edgeGrad.Parent = edgeStroke
+    edgeGrad.Rotation = 45
+    edgeGrad.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,0.4),NumberSequenceKeypoint.new(0.5,0.9),NumberSequenceKeypoint.new(1,0.4)})
+    edgeGrad.Parent = stroke
+    local dropShadow = Instance.new("ImageLabel")
+    dropShadow.Name = "DropShadow"
+    dropShadow.BackgroundTransparency = 1
+    dropShadow.Image = "rbxassetid://6015897843"
+    dropShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    dropShadow.ImageTransparency = 0.6
+    dropShadow.ScaleType = Enum.ScaleType.Slice
+    dropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+    dropShadow.Size = UDim2.new(1, 30, 1, 30)
+    dropShadow.Position = UDim2.new(0.5, 0, 0.5, 5)
+    dropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    dropShadow.ZIndex = baseZIndex - 1
+    dropShadow.Parent = gui
 end
 local function createMobileUI()
     local gui = Instance.new("ScreenGui")
@@ -181,31 +154,23 @@ local function createMobileUI()
     welcomeText.Position = UDim2.new(0.5, 0, 0.5, 0)
     welcomeText.AnchorPoint = Vector2.new(0.5, 0.5)
     welcomeText.BackgroundTransparency = 1
-    welcomeText.Text = "欢迎使用黄某飞行脚本 \n V 1.0"
+    welcomeText.Text = "黄某飞行脚本 \n V1.0.1"
     welcomeText.TextColor3 = Color3.fromRGB(255, 255, 255)
     welcomeText.TextTransparency = 1
     welcomeText.TextScaled = true
-    welcomeText.Font = Enum.Font.GothamBold
+    welcomeText.Font = Enum.Font.GothamBlack
     welcomeText.Parent = welcomeGui
     local wScale = Instance.new("UIScale")
     wScale.Scale = 0
     wScale.Parent = welcomeText
     local wGradient = Instance.new("UIGradient")
     wGradient.Rotation = 0
-    wGradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
-        ColorSequenceKeypoint.new(0.166, Color3.fromRGB(255, 165, 0)),
-        ColorSequenceKeypoint.new(0.333, Color3.fromRGB(255, 255, 0)),
-        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)),
-        ColorSequenceKeypoint.new(0.666, Color3.fromRGB(0, 255, 255)),
-        ColorSequenceKeypoint.new(0.833, Color3.fromRGB(128, 0, 128)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
-    })
+    wGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0,Color3.fromRGB(255,100,100)),ColorSequenceKeypoint.new(0.5,Color3.fromRGB(100,255,100)),ColorSequenceKeypoint.new(1,Color3.fromRGB(100,100,255))})
     wGradient.Parent = welcomeText
     local moveTween = TweenService:Create(wGradient, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1), {Offset = Vector2.new(-1, 0)})
     moveTween:Play()
-    TweenService:Create(wScale, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale = 1}):Play()
-    local fadeTween = TweenService:Create(welcomeText, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0})
+    TweenService:Create(wScale, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale = 1}):Play()
+    local fadeTween = TweenService:Create(welcomeText, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0})
     fadeTween:Play()
     task.delay(3, function()
         TweenService:Create(wScale, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Scale = 0}):Play()
@@ -217,116 +182,126 @@ local function createMobileUI()
         end)
     end)
     local container = Instance.new("Frame")
-    container.Size = UDim2.new(0, 220, 0, 40)
+    container.Size = UDim2.new(0, 240, 0, 48)
     container.Position = UDim2.new(0.5, 0, 0.8, 0)
     container.AnchorPoint = Vector2.new(0.5, 0.5)
-    container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    container.BackgroundTransparency = 0.15
+    container.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+    container.BackgroundTransparency = 0.2
     container.Parent = gui
-    applyiOSGlassEffect(container, UDim.new(1, 0), 1)
+    applyModern2026Effect(container, UDim.new(0, 24), 2)
     local uiScale = Instance.new("UIScale")
     uiScale.Scale = 0
     uiScale.Parent = container
     local closeBtn = Instance.new("TextButton")
-    closeBtn.Size = UDim2.new(0, 50, 0, 40)
+    closeBtn.Size = UDim2.new(0, 50, 0, 48)
     closeBtn.Position = UDim2.new(0, 0, 0, 0)
     closeBtn.Text = "X"
-    closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeBtn.TextColor3 = Color3.fromRGB(255, 100, 100)
     closeBtn.Font = Enum.Font.GothamBold
-    closeBtn.TextSize = 18
+    closeBtn.TextSize = 20
     closeBtn.BackgroundTransparency = 1
-    closeBtn.ZIndex = 3
+    closeBtn.ZIndex = 4
     closeBtn.Parent = container
     local div1 = Instance.new("Frame")
-    div1.Size = UDim2.new(0, 1, 0, 24)
-    div1.Position = UDim2.new(0, 50, 0.5, -12)
+    div1.Size = UDim2.new(0, 1, 0, 28)
+    div1.Position = UDim2.new(0, 50, 0.5, -14)
     div1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    div1.BackgroundTransparency = 0.7
+    div1.BackgroundTransparency = 0.85
     div1.BorderSizePixel = 0
-    div1.ZIndex = 3
+    div1.ZIndex = 4
     div1.Parent = container
     local flyHighlight = Instance.new("Frame")
-    flyHighlight.Size = UDim2.new(0, 120, 0, 30)
+    flyHighlight.Size = UDim2.new(0, 138, 0, 38)
     flyHighlight.Position = UDim2.new(0, 51, 0, 5)
-    flyHighlight.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+    flyHighlight.BackgroundColor3 = Color3.fromRGB(60, 120, 255)
     flyHighlight.BackgroundTransparency = 1
     flyHighlight.Parent = container
-    applyiOSGlassEffect(flyHighlight, UDim.new(1, 0), 2)
+    applyModern2026Effect(flyHighlight, UDim.new(0, 12), 3)
     local capsuleBtn = Instance.new("TextButton")
-    capsuleBtn.Size = UDim2.new(0, 120, 0, 40)
+    capsuleBtn.Size = UDim2.new(0, 138, 0, 48)
     capsuleBtn.Position = UDim2.new(0, 51, 0, 0)
     capsuleBtn.Text = "飞行"
     capsuleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    capsuleBtn.Font = Enum.Font.GothamMedium
+    capsuleBtn.TextSize = 16
     capsuleBtn.BackgroundTransparency = 1
     capsuleBtn.AutoButtonColor = false
-    capsuleBtn.ZIndex = 5
+    capsuleBtn.ZIndex = 6
     capsuleBtn.Parent = container
     local expandBtn = Instance.new("TextButton")
-    expandBtn.Size = UDim2.new(0.33, 0, 1, 0)
-    expandBtn.Position = UDim2.new(0.66, 0, 0, 0)
+    expandBtn.Size = UDim2.new(0.3, 0, 1, 0)
+    expandBtn.Position = UDim2.new(0.7, 0, 0, 0)
     expandBtn.Text = ""
     expandBtn.BackgroundTransparency = 1
-    expandBtn.ZIndex = 5
+    expandBtn.ZIndex = 6
     expandBtn.Parent = capsuleBtn
     local arrowIcon = Instance.new("ImageLabel")
-    arrowIcon.Size = UDim2.new(0, 20, 0, 20)
-    arrowIcon.Position = UDim2.new(0.5, -10, 0.5, -10)
+    arrowIcon.Size = UDim2.new(0, 18, 0, 18)
+    arrowIcon.Position = UDim2.new(0.5, -9, 0.5, -9)
     arrowIcon.BackgroundTransparency = 1
     arrowIcon.Image = "rbxassetid://6035047377"
-    arrowIcon.ZIndex = 5
+    arrowIcon.ZIndex = 6
     arrowIcon.Parent = expandBtn
     local div2 = Instance.new("Frame")
-    div2.Size = UDim2.new(0, 1, 0, 24)
-    div2.Position = UDim2.new(0, 171, 0.5, -12)
+    div2.Size = UDim2.new(0, 1, 0, 28)
+    div2.Position = UDim2.new(0, 189, 0.5, -14)
     div2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    div2.BackgroundTransparency = 0.7
+    div2.BackgroundTransparency = 0.85
     div2.BorderSizePixel = 0
-    div2.ZIndex = 3
+    div2.ZIndex = 4
     div2.Parent = container
     local dragBtn = Instance.new("TextButton")
-    dragBtn.Size = UDim2.new(0, 48, 0, 40)
-    dragBtn.Position = UDim2.new(0, 172, 0, 0)
+    dragBtn.Size = UDim2.new(0, 50, 0, 48)
+    dragBtn.Position = UDim2.new(0, 190, 0, 0)
     dragBtn.Text = ""
     dragBtn.BackgroundTransparency = 1
     dragBtn.AutoButtonColor = false
-    dragBtn.ZIndex = 3
+    dragBtn.ZIndex = 4
     dragBtn.Parent = container
     local dragIcon = Instance.new("ImageLabel")
-    dragIcon.Size = UDim2.new(0, 20, 0, 20)
-    dragIcon.Position = UDim2.new(0.5, -10, 0.5, -10)
+    dragIcon.Size = UDim2.new(0, 22, 0, 22)
+    dragIcon.Position = UDim2.new(0.5, -11, 0.5, -11)
     dragIcon.BackgroundTransparency = 1
     dragIcon.Image = "rbxassetid://6034768640"
-    dragIcon.ZIndex = 3
+    dragIcon.ZIndex = 4
     dragIcon.Parent = dragBtn
     local panel = Instance.new("Frame")
-    panel.Size = UDim2.new(0, 120, 0, 0)
-    panel.Position = UDim2.new(0, 51, 0, 45)
-    panel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    panel.BackgroundTransparency = 0.15
+    panel.Size = UDim2.new(0, 138, 0, 0)
+    panel.Position = UDim2.new(0, 51, 0, 54)
+    panel.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+    panel.BackgroundTransparency = 1
     panel.Visible = false
     panel.Parent = container
-    applyiOSGlassEffect(panel, UDim.new(0, 12), 1)
+    applyModern2026Effect(panel, UDim.new(0, 14), 2)
+    panel.ModernEdge.Transparency = 1
+    panel.DropShadow.ImageTransparency = 1
     local speedLabel = Instance.new("TextLabel")
-    speedLabel.Size = UDim2.new(0.3, 0, 0, 25)
+    speedLabel.Size = UDim2.new(0.35, 0, 0, 28)
     speedLabel.Position = UDim2.new(0.05, 0, 0, 10)
     speedLabel.BackgroundTransparency = 1
     speedLabel.Text = "速度:"
-    speedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    speedLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
+    speedLabel.Font = Enum.Font.GothamMedium
+    speedLabel.TextSize = 14
     speedLabel.TextTransparency = 1
     speedLabel.TextXAlignment = Enum.TextXAlignment.Left
-    speedLabel.ZIndex = 3
+    speedLabel.ZIndex = 4
     speedLabel.Parent = panel
     local speedBox = Instance.new("TextBox")
-    speedBox.Size = UDim2.new(0.55, 0, 0, 25)
-    speedBox.Position = UDim2.new(0.4, 0, 0, 10)
+    speedBox.Size = UDim2.new(0.5, 0, 0, 28)
+    speedBox.Position = UDim2.new(0.45, 0, 0, 10)
     speedBox.Text = tostring(FlySpeed)
     speedBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-    speedBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    speedBox.BackgroundTransparency = 0.15
+    speedBox.Font = Enum.Font.GothamBold
+    speedBox.TextSize = 14
+    speedBox.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+    speedBox.BackgroundTransparency = 1
     speedBox.TextTransparency = 1
-    speedBox.ZIndex = 3
+    speedBox.ZIndex = 4
     speedBox.Parent = panel
-    applyiOSGlassEffect(speedBox, UDim.new(1, 0), 3)
+    applyModern2026Effect(speedBox, UDim.new(0, 8), 4)
+    speedBox.ModernEdge.Transparency = 1
+    speedBox.DropShadow.ImageTransparency = 1
     speedBox.FocusLost:Connect(function()
         local num = tonumber(speedBox.Text)
         if num then
@@ -335,51 +310,76 @@ local function createMobileUI()
         speedBox.Text = tostring(FlySpeed)
     end)
     local antiFlingBtn = Instance.new("TextButton")
-    antiFlingBtn.Size = UDim2.new(0.9, 0, 0, 25)
-    antiFlingBtn.Position = UDim2.new(0.05, 0, 0, 45)
+    antiFlingBtn.Size = UDim2.new(0.9, 0, 0, 32)
+    antiFlingBtn.Position = UDim2.new(0.05, 0, 0, 48)
     antiFlingBtn.Text = "反甩飞: 关"
     antiFlingBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    antiFlingBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-    antiFlingBtn.BackgroundTransparency = 0.15
+    antiFlingBtn.Font = Enum.Font.GothamMedium
+    antiFlingBtn.TextSize = 14
+    antiFlingBtn.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
+    antiFlingBtn.BackgroundTransparency = 1
     antiFlingBtn.TextTransparency = 1
-    antiFlingBtn.ZIndex = 3
+    antiFlingBtn.ZIndex = 4
     antiFlingBtn.Parent = panel
-    applyiOSGlassEffect(antiFlingBtn, UDim.new(1, 0), 3)
+    applyModern2026Effect(antiFlingBtn, UDim.new(0, 10), 4)
+    antiFlingBtn.ModernEdge.Transparency = 1
+    antiFlingBtn.DropShadow.ImageTransparency = 1
     local noclipBtn = Instance.new("TextButton")
-    noclipBtn.Size = UDim2.new(0.9, 0, 0, 25)
-    noclipBtn.Position = UDim2.new(0.05, 0, 0, 80)
+    noclipBtn.Size = UDim2.new(0.9, 0, 0, 32)
+    noclipBtn.Position = UDim2.new(0.05, 0, 0, 90)
     noclipBtn.Text = "穿墙: 关"
     noclipBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    noclipBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-    noclipBtn.BackgroundTransparency = 0.15
+    noclipBtn.Font = Enum.Font.GothamMedium
+    noclipBtn.TextSize = 14
+    noclipBtn.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
+    noclipBtn.BackgroundTransparency = 1
     noclipBtn.TextTransparency = 1
-    noclipBtn.ZIndex = 3
+    noclipBtn.ZIndex = 4
     noclipBtn.Parent = panel
-    applyiOSGlassEffect(noclipBtn, UDim.new(1, 0), 3)
-    local uiElements = {speedLabel, speedBox, antiFlingBtn, noclipBtn}
+    applyModern2026Effect(noclipBtn, UDim.new(0, 10), 4)
+    noclipBtn.ModernEdge.Transparency = 1
+    noclipBtn.DropShadow.ImageTransparency = 1
     local isExpanded = false
     local function toggleExpand(state)
         if isExpanded == state then return end
         isExpanded = state
         if state then
             panel.Visible = true
-            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0, 120, 0, 115), Position = UDim2.new(0, 51, 0, 45)})
+            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {Size = UDim2.new(0, 138, 0, 132), BackgroundTransparency = 0.2})
             tw:Play()
+            TweenService:Create(panel.ModernEdge, TweenInfo.new(0.3), {Transparency = 0.85}):Play()
+            TweenService:Create(panel.DropShadow, TweenInfo.new(0.3), {ImageTransparency = 0.6}):Play()
             tw.Completed:Connect(function()
                 if isExpanded then
-                    for _, el in ipairs(uiElements) do
-                        TweenService:Create(el, TweenInfo.new(0.2), {BackgroundTransparency = 0.15, TextTransparency = 0}):Play()
-                    end
+                    TweenService:Create(speedLabel, TweenInfo.new(0.2), {TextTransparency = 0}):Play()
+                    TweenService:Create(speedBox, TweenInfo.new(0.2), {BackgroundTransparency = 0.2, TextTransparency = 0}):Play()
+                    TweenService:Create(speedBox.ModernEdge, TweenInfo.new(0.2), {Transparency = 0.85}):Play()
+                    TweenService:Create(speedBox.DropShadow, TweenInfo.new(0.2), {ImageTransparency = 0.6}):Play()
+                    TweenService:Create(antiFlingBtn, TweenInfo.new(0.2), {BackgroundTransparency = 0.2, TextTransparency = 0}):Play()
+                    TweenService:Create(antiFlingBtn.ModernEdge, TweenInfo.new(0.2), {Transparency = 0.85}):Play()
+                    TweenService:Create(antiFlingBtn.DropShadow, TweenInfo.new(0.2), {ImageTransparency = 0.6}):Play()
+                    TweenService:Create(noclipBtn, TweenInfo.new(0.2), {BackgroundTransparency = 0.2, TextTransparency = 0}):Play()
+                    TweenService:Create(noclipBtn.ModernEdge, TweenInfo.new(0.2), {Transparency = 0.85}):Play()
+                    TweenService:Create(noclipBtn.DropShadow, TweenInfo.new(0.2), {ImageTransparency = 0.6}):Play()
                 end
             end)
             TweenService:Create(arrowIcon, TweenInfo.new(0.3), {Rotation = 90}):Play()
         else
-            for _, el in ipairs(uiElements) do
-                TweenService:Create(el, TweenInfo.new(0.2), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
-            end
+            TweenService:Create(speedLabel, TweenInfo.new(0.2), {TextTransparency = 1}):Play()
+            TweenService:Create(speedBox, TweenInfo.new(0.2), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
+            TweenService:Create(speedBox.ModernEdge, TweenInfo.new(0.2), {Transparency = 1}):Play()
+            TweenService:Create(speedBox.DropShadow, TweenInfo.new(0.2), {ImageTransparency = 1}):Play()
+            TweenService:Create(antiFlingBtn, TweenInfo.new(0.2), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
+            TweenService:Create(antiFlingBtn.ModernEdge, TweenInfo.new(0.2), {Transparency = 1}):Play()
+            TweenService:Create(antiFlingBtn.DropShadow, TweenInfo.new(0.2), {ImageTransparency = 1}):Play()
+            TweenService:Create(noclipBtn, TweenInfo.new(0.2), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
+            TweenService:Create(noclipBtn.ModernEdge, TweenInfo.new(0.2), {Transparency = 1}):Play()
+            TweenService:Create(noclipBtn.DropShadow, TweenInfo.new(0.2), {ImageTransparency = 1}):Play()
             task.wait(0.2)
-            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Size = UDim2.new(0, 120, 0, 0), Position = UDim2.new(0, 51, 0, 45)})
+            local tw = TweenService:Create(panel, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.In), {Size = UDim2.new(0, 138, 0, 0), BackgroundTransparency = 1})
             tw:Play()
+            TweenService:Create(panel.ModernEdge, TweenInfo.new(0.3), {Transparency = 1}):Play()
+            TweenService:Create(panel.DropShadow, TweenInfo.new(0.3), {ImageTransparency = 1}):Play()
             tw.Completed:Connect(function() if not isExpanded then panel.Visible = false end end)
             TweenService:Create(arrowIcon, TweenInfo.new(0.3), {Rotation = 0}):Play()
         end
@@ -387,24 +387,27 @@ local function createMobileUI()
     expandBtn.MouseButton1Click:Connect(function()
         toggleExpand(not isExpanded)
     end)
+    local function animateButton(btn, color)
+        TweenService:Create(btn, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = color}):Play()
+    end
     antiFlingBtn.MouseButton1Click:Connect(function()
         toggleAntiFling(not AntiFlingEnabled)
         if AntiFlingEnabled then
             antiFlingBtn.Text = "反甩飞: 开"
-            antiFlingBtn.BackgroundColor3 = Color3.fromRGB(40, 180, 40)
+            animateButton(antiFlingBtn, Color3.fromRGB(50, 180, 80))
         else
             antiFlingBtn.Text = "反甩飞: 关"
-            antiFlingBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
+            animateButton(antiFlingBtn, Color3.fromRGB(180, 50, 50))
         end
     end)
     noclipBtn.MouseButton1Click:Connect(function()
         toggleNoClip(not NoClipEnabled)
         if NoClipEnabled then
             noclipBtn.Text = "穿墙: 开"
-            noclipBtn.BackgroundColor3 = Color3.fromRGB(40, 180, 40)
+            animateButton(noclipBtn, Color3.fromRGB(50, 180, 80))
         else
             noclipBtn.Text = "穿墙: 关"
-            noclipBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
+            animateButton(noclipBtn, Color3.fromRGB(180, 50, 50))
         end
     end)
     closeBtn.MouseButton1Click:Connect(function()
@@ -421,7 +424,7 @@ local function createMobileUI()
                 end
             end
         end
-        local tw = TweenService:Create(uiScale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Scale = 0})
+        local tw = TweenService:Create(uiScale, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {Scale = 0})
         tw:Play()
         tw.Completed:Connect(function()
             gui:Destroy()
@@ -437,7 +440,7 @@ local function createMobileUI()
             dragStart = input.Position
             startPos = container.Position
             uiTargetPos = startPos
-            TweenService:Create(uiScale, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1.1}):Play()
+            TweenService:Create(uiScale, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {Scale = 1.05}):Play()
         end
     end)
     UserInputService.InputChanged:Connect(function(input)
@@ -450,29 +453,29 @@ local function createMobileUI()
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             if isDraggingUI then
                 isDraggingUI = false
-                TweenService:Create(uiScale, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1.0}):Play()
+                TweenService:Create(uiScale, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {Scale = 1.0}):Play()
             end
         end
     end)
     RunService.RenderStepped:Connect(function()
         local cx, cy = container.Position.X.Offset, container.Position.Y.Offset
         local tx, ty = uiTargetPos.X.Offset, uiTargetPos.Y.Offset
-        if math.abs(tx - cx) > 0.1 or math.abs(ty - cy) > 0.1 then
-            container.Position = UDim2.new(uiTargetPos.X.Scale, cx + (tx - cx) * 0.2, uiTargetPos.Y.Scale, cy + (ty - cy) * 0.2)
+        if math.abs(tx - cx) > 0.5 or math.abs(ty - cy) > 0.5 then
+            container.Position = UDim2.new(uiTargetPos.X.Scale, cx + (tx - cx) * 0.25, uiTargetPos.Y.Scale, cy + (ty - cy) * 0.25)
         end
     end)
     capsuleBtn.MouseButton1Click:Connect(function()
         FlyEnabled = not FlyEnabled
         if FlyEnabled then
             capsuleBtn.Text = "飞行中"
-            TweenService:Create(flyHighlight, TweenInfo.new(0.3), {BackgroundTransparency = 0.15}):Play()
+            TweenService:Create(flyHighlight, TweenInfo.new(0.4, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {BackgroundTransparency = 0.2}):Play()
         else
             capsuleBtn.Text = "飞行"
-            TweenService:Create(flyHighlight, TweenInfo.new(0.3), {BackgroundTransparency = 1}):Play()
+            TweenService:Create(flyHighlight, TweenInfo.new(0.4, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
         end
         toggleFly()
     end)
-    TweenService:Create(uiScale, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale = 1}):Play()
+    TweenService:Create(uiScale, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale = 1}):Play()
 end
 local function setupInputs()
     UserInputService.InputBegan:Connect(function(input, gameProcessed)
