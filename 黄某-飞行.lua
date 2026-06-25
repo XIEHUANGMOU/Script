@@ -111,44 +111,58 @@ end
 local function applyiOSGlassEffect(gui, cornerVal, baseZIndex)
     baseZIndex = baseZIndex or 1
     gui.ZIndex = baseZIndex
-    gui.BorderSizePixel = 0
     local corner = Instance.new("UICorner")
     corner.CornerRadius = cornerVal or UDim.new(1, 0)
     corner.Parent = gui
-    local glassShine = Instance.new("Frame")
-    glassShine.Name = "GlassShine"
-    glassShine.Size = UDim2.new(1, 0, 1, 0)
-    glassShine.Position = UDim2.new(0, 0, 0, 0)
-    glassShine.BackgroundTransparency = 0
-    glassShine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    glassShine.BorderSizePixel = 0
-    glassShine.ZIndex = baseZIndex + 1
-    glassShine.Parent = gui
-    local shineCorner = Instance.new("UICorner")
-    shineCorner.CornerRadius = cornerVal or UDim.new(1, 0)
-    shineCorner.Parent = glassShine
-    local shineGrad = Instance.new("UIGradient")
-    shineGrad.Rotation = 45
-    shineGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0),
-        NumberSequenceKeypoint.new(0.5, 1),
-        NumberSequenceKeypoint.new(1, 0)
+    local topShine = Instance.new("Frame")
+    topShine.Name = "TopShine"
+    topShine.Size = UDim2.new(1, 0, 0.5, 0)
+    topShine.Position = UDim2.new(0, 0, 0, 0)
+    topShine.BackgroundTransparency = 1
+    topShine.ZIndex = baseZIndex + 1
+    topShine.Parent = gui
+    local tCorner = Instance.new("UICorner")
+    tCorner.CornerRadius = cornerVal or UDim.new(1, 0)
+    tCorner.Parent = topShine
+    local tGrad = Instance.new("UIGradient")
+    tGrad.Rotation = 90
+    tGrad.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 0.3),
+        NumberSequenceKeypoint.new(1, 1)
     })
-    shineGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
-    shineGrad.Parent = glassShine
+    tGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+    tGrad.Parent = topShine
+    local bottomShine = Instance.new("Frame")
+    bottomShine.Name = "BottomShine"
+    bottomShine.Size = UDim2.new(1, 0, 0.5, 0)
+    bottomShine.Position = UDim2.new(0, 0, 0.5, 0)
+    bottomShine.BackgroundTransparency = 1
+    bottomShine.ZIndex = baseZIndex + 1
+    bottomShine.Parent = gui
+    local bCorner = Instance.new("UICorner")
+    bCorner.CornerRadius = cornerVal or UDim.new(1, 0)
+    bCorner.Parent = bottomShine
+    local bGrad = Instance.new("UIGradient")
+    bGrad.Rotation = 90
+    bGrad.Transparency = NumberSequence.new({
+        NumberSequenceKeypoint.new(0, 1),
+        NumberSequenceKeypoint.new(1, 0.3)
+    })
+    bGrad.Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))
+    bGrad.Parent = bottomShine
     local edgeStroke = Instance.new("UIStroke")
     edgeStroke.Name = "GlassEdge"
-    edgeStroke.Thickness = 1.5
+    edgeStroke.Thickness = 1
     edgeStroke.Color = Color3.fromRGB(255, 255, 255)
-    edgeStroke.Transparency = 0
+    edgeStroke.Transparency = 0.8
     edgeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     edgeStroke.Parent = gui
     local edgeGrad = Instance.new("UIGradient")
-    edgeGrad.Rotation = 45
+    edgeGrad.Rotation = 90
     edgeGrad.Transparency = NumberSequence.new({
-        NumberSequenceKeypoint.new(0, 0),
-        NumberSequenceKeypoint.new(0.5, 1),
-        NumberSequenceKeypoint.new(1, 0)
+        NumberSequenceKeypoint.new(0, 0.4),
+        NumberSequenceKeypoint.new(0.5, 0.9),
+        NumberSequenceKeypoint.new(1, 0.4)
     })
     edgeGrad.Parent = edgeStroke
 end
@@ -308,10 +322,9 @@ local function createMobileUI()
     speedBox.Text = tostring(FlySpeed)
     speedBox.TextColor3 = Color3.fromRGB(255, 255, 255)
     speedBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    speedBox.BackgroundTransparency = 1
+    speedBox.BackgroundTransparency = 0.15
     speedBox.TextTransparency = 1
     speedBox.ZIndex = 3
-    speedBox.ClearTextOnFocus = false
     speedBox.Parent = panel
     applyiOSGlassEffect(speedBox, UDim.new(1, 0), 3)
     speedBox.FocusLost:Connect(function()
@@ -327,7 +340,7 @@ local function createMobileUI()
     antiFlingBtn.Text = "反甩飞: 关"
     antiFlingBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
     antiFlingBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-    antiFlingBtn.BackgroundTransparency = 1
+    antiFlingBtn.BackgroundTransparency = 0.15
     antiFlingBtn.TextTransparency = 1
     antiFlingBtn.ZIndex = 3
     antiFlingBtn.Parent = panel
@@ -338,7 +351,7 @@ local function createMobileUI()
     noclipBtn.Text = "穿墙: 关"
     noclipBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
     noclipBtn.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
-    noclipBtn.BackgroundTransparency = 1
+    noclipBtn.BackgroundTransparency = 0.15
     noclipBtn.TextTransparency = 1
     noclipBtn.ZIndex = 3
     noclipBtn.Parent = panel
