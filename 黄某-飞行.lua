@@ -1,5 +1,5 @@
---该脚本属于开源脚本，严禁使用此脚本进行倒卖
---This script is open-source; reselling it is strictly prohibited.
+--该脚本属于开源脚本，严禁将此脚本进行倒卖牟利！
+--This script is open source; reselling it for profit is strictly prohibited!
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
