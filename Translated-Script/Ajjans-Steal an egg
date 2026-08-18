@@ -1,0 +1,373 @@
+local Translations = {
+    ["Steal a Egg"] = "偷一个蛋",
+    ["Script Loading..."] = "脚本加载中...",
+    ["Lock"]="锁定",
+    ["Unlock"]="解锁",
+    ["FPS:"] = "帧率:",
+    ["PING:"] = "延迟:",
+    ["VER:"] = "版本:",
+    ["Search..."] = "搜索...",
+    ["Main"] = "主页",
+    ["Automation"] = "自动化",
+    ["Misc"] = "杂项",
+    ["Movement & Physics"] = "移动与体力",
+    ["Enable Speed"] = "启用加速",
+    ["Speed Value:"] = "速度值:",
+    ["Infinite Jump"] = "无限跳",
+    ["NoClip"] = "穿墙",
+    ["Fly"] = "飞行",
+    ["Fly Speed:"] = "飞行速度:",
+    ["Visuals"] = "视觉效果",
+    ["Player ESP"] = "玩家透视",
+    ["Plot ESP"] = "地块透视",
+    ["Egg ESP"] = "蛋透视",
+    ["UI Settings"] = "界面设置",
+    ["Unload UI"] = "卸载界面",
+    ["Keybind to Open/Close"] = "打开/关闭快捷键",
+    ["RightControl"] = "右Ctrl键",
+    ["Configuration"] = "配置",
+    ["Config name"] = "配置名称",
+    ["Create config"] = "创建配置",
+    ["Config list"] = "配置列表",
+    ["Load config"] = "加载配置",
+    ["Overwrite config"] = "覆盖配置",
+    ["Delete config"] = "删除配置",
+    ["Refresh list"] = "刷新列表",
+    ["Set as autoload"] = "设为自动加载",
+    ["Reset autoload"] = "重置自动加载",
+    ["Current autoload config: none"] = "当前自动加载配置: 无",
+    ["Rotation"] = "轮换",
+    ["Enable Rotation"] = "启用轮换",
+    ["Automation Priority"] = "自动化优先级",
+    ["Auto Steal Egg, Auto P..."] = "自动偷蛋, 自动放...",
+    ["Rotation Switch CD: 30"] = "轮换切换冷却: 30",
+    ["Status: Idle - no ready work"] = "状态: 空闲 - 无就绪任务",
+    ["Priority:"] = "优先级:",
+    ["1. Auto Steal Egg"] = "1. 自动偷蛋",
+    ["2. Auto Place Egg"] = "2. 自动放置蛋",
+    ["3. Auto Hatch"] = "3. 自动孵化",
+    ["4. Auto Treadmill"] = "4. 自动跑步机",
+    ["5. Auto Sell"] = "5. 自动出售",
+    ["Egg Lifecycle"] = "蛋生命周期",
+    ["Categories"] = "分类",
+    ["Rarities"] = "稀有度",
+    ["Mutations"] = "变异",
+    ["Auto Place Selected"] = "自动放置已选",
+    ["Auto Place All"] = "自动放置全部",
+    ["Auto Hatch Ready"] = "自动孵化就绪",
+    ["Eggs"] = "蛋",
+    ["Pets"] = "宠物",
+    ["Auto Fuse Pets[Beta]"] = "自动融合宠物[测试版]",
+    ["Fuse Rarities"] = "融合稀有度",
+    ["Fuse Mutations"] = "融合变异",
+    ["Pick Group By"] = "按组选择",
+    ["Highest Rarity"] = "最高稀有度",
+    ["Lowest Rarity"] = "最低稀有度",
+    ["Most Count"] = "最多数量",
+    ["Least Count"] = "最少数量",
+    ["Never Fuse Mutated"] = "永不融合变异",
+    ["Never Fuse Equipped"] = "永不融合已装备",
+    ["Auto Complete Reveal"] = "自动完成揭示",
+    ["Maximum Scale to Fuse:"] = "融合最大规模:",
+    ["Keep Per Pet Type:"] = "每种宠物保留:",
+    ["Fuse Interval:"] = "融合间隔:",
+    ["Fuse Now"] = "立即融合",
+    ["Rewards"] = "奖励",
+    ["Auto Claim Index Rewards"] = "自动领取索引奖励",
+    ["Auto Claim Group Reward"] = "自动领取群组奖励",
+    ["Auto Claim Offline Earnings"] = "自动领取离线收益",
+    ["Auto Sell Selected"] = "自动出售已选",
+    ["Auto Sell All Eligible"] = "自动出售所有符合条件",
+    ["Auto Sell Rarities"] = "自动出售稀有度",
+    ["Sync Auto Sell Rarities"] = "同步自动出售稀有度",
+    ["Rarest"] = "最稀有",
+    ["Auto Steal Selected"] = "自动偷取已选",
+    ["Auto Steal All"] = "自动偷取全部",
+    ["Steal Big Eggs"] = "偷取大蛋",
+    ["Big Egg Minimum Size:"] = "大蛋最小尺寸:",
+    ["Auto Drop Held Egg"] = "自动丢弃手持蛋",
+    ["Tween Speed:"] = "补间速度:",
+    ["Enable Server Hop"] = "启用服务器跳转",
+    ["Hop When"] = "跳转条件",
+    ["No Matching Eggs"] = "无匹配蛋",
+    ["Hop Threshold:"] = "跳转阈值:",
+    ["Steal Single Best Egg"] = "偷取单个最佳蛋",
+    ["Tween To Safezone"] = "补间到安全区",
+    ["Bat Kill Aura"] = "蝙蝠击杀光环",
+    ["Aura Range:"] = "光环范围:",
+    ["Attack Delay:"] = "攻击延迟:",
+    ["Auto Equip Bat"] = "自动装备蝙蝠",
+    ["Upgrades"] = "升级",
+    ["Auto Equip Best Pet"] = "自动装备最佳宠物",
+    ["Auto Treadmill Training"] = "自动跑步机训练",
+    ["Auto Treadmill Upgrade"] = "自动跑步机升级",
+    ["Auto Base Upgrade"] = "自动基地升级",
+    ["Cash Reserve"] = "现金储备",
+    ["Steal a Egg"] = "偷一个蛋",
+    ["Defense"] = "防御",
+    ["Auto Buy Trail"] = "自动购买轨迹",
+    ["Trail Wanted"] = "目标轨迹",
+    ["BlueTrail"] = "蓝色轨迹",
+    ["Auto Equip Best Trail"] = "自动装备最佳轨迹",
+    ["Auto Equip Best Gear"] = "自动装备最佳装备",
+    ["Trails & Gears"] = "轨迹与装备",
+    ["Areas"] = "区域",
+    ["Diamond"] = "钻石",
+    ["DivineTrail"] = "神圣轨迹",
+    ["Electric"] = "电能",
+    ["EternalTrail"] = "永恒轨迹",
+    ["Fire"] = "烈焰",
+    ["Galaxy"] = "银河",
+    ["GalaxvTrail"] = "银河轨迹",
+    ["Target Priority"] = "目标优先级",
+    ["Abyss Ocean"] = "深渊海洋",
+    ["Cosmic"] = "宇宙",
+    ["Desert"] = "沙漠",
+    ["Forest"] = "森林",
+    ["Jungle"] = "丛林",
+    ["Lake"] = "湖泊",
+    ["Prehistoric"] = "史前",
+    ["Snow"] = "雪地",
+    ["Volcano"] = "火山",
+    ["Mythic"] = "神话",
+    ["Legendary"] = "传说",
+    ["Epic"] = "史诗",
+    ["Rare"] = "稀有",
+    ["Uncommon"] = "罕见",
+    ["Celestial"] = "天界",
+    ["SuperRare"] = "超稀有",
+    ["Common"] = "普通",
+    ["None"] = "无",
+    ["Alpha"] = "阿尔法",
+    ["Bloodmoon"] = "血月",
+    ["Burnt"] = "焦黑",
+    ["Candy"] = "糖果",
+    ["Celestial"] = "天界",
+    ["Chilled"] = "冰寒",
+    ["Choc"] = "巧克力",
+    ["Dawnbound"] = "黎明束缚",
+    ["Frozen"] = "霜冻",
+    ["Golden"] = "黄金",
+    ["Heavenly"] = "天堂",
+    ["HoneyGlazed"] = "蜜糖",
+    ["Magma"] = "岩浆",
+    ["Plasma"] = "等离子",
+    ["Pollinated"] = "授粉",
+    ["Rainbow"] = "彩虹",
+    ["Scared"] = "惊恐",
+    ["Shocked"] = "震惊",
+    ["Silver"] = "白银",
+    ["Twisted"] = "扭曲",
+    ["Voidtouched"] = "虚空触碰",
+    ["Wet"] = "湿润",
+    ["Windstruck"] = "风袭",
+    ["Zombified"] = "僵尸化",
+    ["Timed Interval"] = "定时间隔",
+    ["After Steal Count"] = "偷取次数后",
+    ["Gold"] = "黄金",
+    ["GoldenTrail"] = "金色轨迹",
+    ["GreenTrail"] = "绿色轨迹",
+    ["GreyTrail"] = "灰色轨迹",
+    ["Ice"] = "寒冰",
+    ["PurpleTrail"] = "紫色轨迹",
+    ["Rainbow"] = "彩虹",
+    ["RedTrail"] = "红色轨迹",
+    ["SecretTrail"] = "秘密轨迹",
+    ["Shadow"] = "暗影",
+    ["Status"]="状态",
+    ["no ready work"]="无就绪任务",
+    ["Are you sure?"]="你确定吗？（再点一次可关闭）",
+    ["Steal Eggs"]="偷蛋",
+    ["Transcendent"] = "超凡",
+    ["Prismatic"] = "棱彩",
+    ["Superior"] = "卓越",
+    ["Divine"] = "神圣",
+    ["Limited"] = "限定",
+    ["Eternal"] = "永恒",
+    ["Exotic"] = "异域",
+    ["Secret"] = "秘密",
+    ["Exclusive"] = "专属",
+    ["Squishy God"] = "软绵绵之神",
+    ["Ankylosaurus"] = "甲龙",
+    ["Archdemon Dragon"] = "大恶魔龙",
+    ["Axolotl"] = "美西螈",
+    ["Balrog"] = "炎魔",
+    ["Bananita Dolphinita"] = "香蕉海豚",
+    ["Bear"] = "熊",
+    ["Beluga Whale"] = "白鲸",
+    ["Belula Beluga"] = "贝鲁拉白鲸",
+    ["Bird"] = "鸟",
+    ["Bomboclat Crocolat"] = "炸弹鳄鱼",
+    ["Bronto"] = "雷龙",
+    ["Brr Brr Patapim"] = "布布帕塔皮姆",
+    ["Camel"] = "骆驼",
+    ["Catfish"] = "鲶鱼",
+    ["Centapede"] = "蜈蚣",
+    ["Cerberus"] = "地狱三头犬",
+    ["Chicken"] = "鸡",
+    ["Chillin Chilli"] = "辣椒",
+    ["Chimpanzee"] = "黑猩猩",
+    ["Crocodile"] = "鳄鱼",
+    ["Demon Imp"] = "恶魔小妖",
+    ["Dodo"] = "渡渡鸟",
+    ["Dog"] = "狗",
+    ["Duckling"] = "小鸭",
+    ["El Maja"] = "埃尔玛哈",
+    ["永恒 Lunar Dragon"] = "永恒月龙",
+    ["Fennec"] = "耳廓狐",
+    ["Flaming Bull"] = "烈焰公牛",
+    ["Fox"] = "狐狸",
+    ["Frog"] = "青蛙",
+    ["Gargoyle"] = "石像鬼",
+    ["Gorilla"] = "大猩猩",
+    ["Hellhound"] = "地狱猎犬",
+    ["Jerboa"] = "跳鼠",
+    ["King Mammoth"] = "猛犸之王",
+    ["King Snake"] = "蛇王",
+    ["Kraken"] = "克拉肯",
+    ["La Vacca Saturno Saturnita"] = "土星奶牛",
+    ["Lava Dragon"] = "熔岩龙",
+    ["Lava Gecko"] = "熔岩壁虎",
+    ["Lava Iguana"] = "熔岩鬣蜥",
+    ["Lava frog"] = "熔岩蛙",
+    ["Leviathan"] = "利维坦",
+    ["Mammoth"] = "猛犸象",
+    ["Mangolini Parrochini"] = "曼戈里尼鹦鹉",
+    ["Minotaur"] = "弥诺陶洛斯",
+    ["Mosasaurus"] = "沧龙",
+    ["Orangutini Ananassini"] = "奥兰古提尼菠萝",
+    ["Orca"] = "虎鲸",
+    ["0wl"] = "猫头鹰",
+    ["Parrotfish"] = "鹦嘴鱼",
+    ["Penguin"] = "企鹅",
+    ["Phoenix"] = "凤凰",
+    ["Polar Bear"] = "北极熊",
+    ["Pterodacty1"] = "翼龙",
+    ["Raccoon"] = "浣熊",
+    ["Royal Sphinx"] = "皇家斯芬克斯",
+    ["Sabertooth Tiger"] = "剑齿虎",
+    ["Sand Spider"] = "沙蛛",
+    ["Scorpion"] = "蝎子",
+    ["Shark"] = "鲨鱼",
+    ["Snake"] = "蛇",
+    ["Spider"] = "蜘蛛",
+    ["Strawberry Elephant"] = "草莓象",
+    ["Swan"] = "天鹅",
+    ["Swordfish"] = "剑鱼",
+    ["TRex"] = "霸王龙",
+    ["Tiger"] = "老虎",
+    ["Tob Tobi Tob Tob"] = "托布托比托布托布",
+    ["Toucan"] = "巨嘴鸟",
+    ["Tralaledon"] = "特拉莱登",
+    ["Triceratops"] = "三角龙",
+    ["Trulimero Trulicina"] = "特鲁利梅罗特鲁利奇纳",
+    ["Tung Tung Sahur"] = "通通萨胡尔",
+    ["Turtle"] = "海龟",
+    ["Unicorn"] = "独角兽",
+    ["Walrus"] = "海象",
+    ["Whale Shark"] = "鲸鲨",
+    ["Yeti"] = "雪人",
+    ["Cosmic Dragon"] = "宇宙龙",
+    ["Cosmic Gecko"] = "宇宙壁虎",
+    ["Cosmic Gorilla"] = "宇宙大猩猩",
+    ["Cosmic Skeleton Boss"] = "宇宙骷髅首领",
+    ["Eternal Lunar Dragon"] = "永恒月龙",
+    ["Ice Dragon"] = "寒冰龙",
+    ["Highest Earnings"] = "最高收益",
+    ["Nearest"] = "最近",
+    ["Un-Indexed"] = "未索引",
+    ["Owl"] = "猫头鹰",
+    ["Pterodactyl"] = "翼龙",
+}
+local sortedKeys = {}
+    for k in pairs(Translations) do
+        table.insert(sortedKeys, k)
+    end
+    table.sort(sortedKeys, function(a, b)
+        return #a > #b
+    end)
+    local function translateText(text)
+        if not text or type(text) ~= "string" or text == "" then
+            return text
+        end
+        if Translations[text] then
+            return Translations[text]
+        end
+        local result = text
+        for _, en in ipairs(sortedKeys) do
+            if result:find(en, 1, true) then
+                result = result:gsub(en, Translations[en], 1)
+            end
+        end
+        return result
+    end
+    local function isUITextObject(obj)
+        return obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox")
+    end
+    local function setupTranslationEngine()
+        local success, err = pcall(function()
+            local oldIndex = getrawmetatable(game).__newindex
+            setreadonly(getrawmetatable(game), false)
+            getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+                if isUITextObject(t) and k == "Text" then
+                    v = translateText(tostring(v))
+                end
+                return oldIndex(t, k, v)
+            end)
+            setreadonly(getrawmetatable(game), true)
+        end)
+        if not success then
+            warn("元表劫持失败:", err)
+            local translatedCache = {}
+            local function translateSingleObject(gui)
+                if not isUITextObject(gui) then
+                    return
+                end
+                local currentText = gui.Text
+                if not currentText or currentText == "" then
+                    return
+                end
+                local translatedText = translateText(currentText)
+                if translatedText ~= currentText then
+                    gui.Text = translatedText
+                    translatedCache[gui] = translatedText
+                end
+            end
+            local function scanAndTranslate()
+                local function scanGui(parent)
+                    for _, gui in ipairs(parent:GetDescendants()) do
+                        if isUITextObject(gui) then
+                            local currentText = gui.Text
+                            local cachedText = translatedCache[gui]
+                            if not cachedText or cachedText ~= currentText then
+                                translateSingleObject(gui)
+                            end
+                        end
+                    end
+                end
+                pcall(scanGui, game:GetService("CoreGui"))
+                local player = game:GetService("Players").LocalPlayer
+                if player and player:FindFirstChild("PlayerGui") then
+                    pcall(scanGui, player.PlayerGui)
+                end
+            end
+            local function setupDescendantListener(parent)
+                parent.DescendantAdded:Connect(function(descendant)
+                    if isUITextObject(descendant) then
+                        task.spawn(translateSingleObject, descendant)
+                    end
+                end)
+            end
+            pcall(setupDescendantListener, game:GetService("CoreGui"))
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                pcall(setupDescendantListener, player.PlayerGui)
+            end
+            while task.wait(10) do
+                scanAndTranslate()
+            end
+        end
+    end
+    task.wait(2)
+    setupTranslationEngine()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/359e97f8618e9008afe5f496184ebb7c.lua"))()
